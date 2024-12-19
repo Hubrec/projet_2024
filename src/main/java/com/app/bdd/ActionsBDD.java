@@ -1,9 +1,11 @@
 package com.app.bdd;
 
+import com.app.domain.Programmateur;
+
 public interface ActionsBDD {
-    void ajouterProgrammateur(String nom, String prenom, String adresse, String pseudo, String responsable, String hobby);
-    void supprimerProgrammateur(String pseudo);
-    void modifierProgrammateur(String pseudo, String nom, String prenom, String adresse, String responsable, String hobby);
-    void afficherProgrammateur(String pseudo);
-    void afficherProgrammateurs();
+    Integer ajouterProgrammateur(String nom, String prenom, String adresse, String pseudo, String responsable, String hobby, Integer anNaissance, Integer salaire, Integer prime);
+    Integer supprimerProgrammateur(Number id);
+    Integer modifierProgrammateur(String pseudo, String nom, String prenom, String adresse, String responsable, String hobby);
+    Programmateur recupererProgrammateur(String pseudo);
+    Programmateur[] recupererProgrammateurs();
 }
