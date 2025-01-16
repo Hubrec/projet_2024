@@ -1,6 +1,6 @@
-package com.app.output;
+package main.java.com.app.vue;
 
-import com.app.domain.Programmateur;
+import main.java.com.app.model.Programmateur;
 
 public class Menu {
 

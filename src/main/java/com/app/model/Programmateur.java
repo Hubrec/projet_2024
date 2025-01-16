@@ -1,4 +1,4 @@
-package com.app.domain;
+package main.java.com.app.model;
 
 public class Programmateur {
     private Integer id;

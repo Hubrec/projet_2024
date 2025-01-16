@@ -1,6 +1,6 @@
-package com.app.bdd;
+package main.java.com.app.controller.bdd;
 
-import com.app.domain.Programmateur;
+import main.java.com.app.model.Programmateur;
 
 public interface ActionsBDD {
     Integer ajouterProgrammateur(String nom, String prenom, String adresse, String pseudo, String responsable, String hobby, Integer anNaissance, Integer salaire, Integer prime);

@@ -1,12 +1,10 @@
-package com.app;
+package main.java.com.app;
 
-import com.app.output.Menu;
+import main.java.com.app.vue.Menu;
+
 
 public class Start {
     public static void main(String[] args) {
-        System.out.println("Hello noob Test!");
-        System.out.println("C'est pas la rue");
-        System.out.println("C'est pas la ruiuuuu");
         Menu.afficherMenu();
     }
 }
