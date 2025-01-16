@@ -1,33 +1,33 @@
 package main.java.com.app.controller.bdd.impl;
 
 import main.java.com.app.controller.bdd.ActionsBDD;
-import main.java.com.app.model.Programmateur;
+import main.java.com.app.model.Programmeur;
 
 import java.sql.*;
 
 public class ActionBDDimpl implements ActionsBDD {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/your_database";
-    private static final String USER = "your_username";
-    private static final String PASSWORD = "your_password";
+    private static final String URL = "jdbc:mysql://localhost:3306/projet_2024";
+    private static final String USER = "root";
+    private static final String PASSWORD = "";
 
     private Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 
     @Override
-    public Integer ajouterProgrammateur(String nom, String prenom, String adresse, String pseudo, String responsable, String hobby, Integer anNaissance, Integer salaire, Integer prime) {
-        String sql = "INSERT INTO programmateurs (nom, prenom, adresse, pseudo, responsable, hobby, anNaissance, salaire, prime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public Integer ajouterProgrammeur(Programmeur p) {
+        String sql = "INSERT INTO programmeur (nom, prenom, adresse, pseudo, responsable, hobby, an_naissance, salaire, prime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            stmt.setString(1, nom);
-            stmt.setString(2, prenom);
-            stmt.setString(3, adresse);
-            stmt.setString(4, pseudo);
-            stmt.setString(5, responsable);
-            stmt.setString(6, hobby);
-            stmt.setInt(7, anNaissance);
-            stmt.setInt(8, salaire);
-            stmt.setInt(9, prime);
+            stmt.setString(1, p.getNom());
+            stmt.setString(2, p.getPrenom());
+            stmt.setString(3, p.getAdresse());
+            stmt.setString(4, p.getPseudo());
+            stmt.setString(5, p.getResponsable());
+            stmt.setString(6, p.getHobby());
+            stmt.setInt(7, p.getAnNaissance());
+            stmt.setInt(8, p.getSalaire());
+            stmt.setInt(9, p.getPrime());
             int affectedRows = stmt.executeUpdate();
             if (affectedRows > 0) {
                 try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
@@ -43,10 +43,10 @@ public class ActionBDDimpl implements ActionsBDD {
     }
 
     @Override
-    public Integer supprimerProgrammateur(Number id) {
-        String sql = "DELETE FROM programmateurs WHERE id = ?";
+    public Integer supprimerProgrammeur(String pseudo) {
+        String sql = "DELETE FROM programmeur WHERE pseudo = ?";
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, id.intValue());
+            stmt.setString(1, pseudo);
             return stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -55,15 +55,19 @@ public class ActionBDDimpl implements ActionsBDD {
     }
 
     @Override
-    public Integer modifierProgrammateur(String pseudo, String nom, String prenom, String adresse, String responsable, String hobby) {
-        String sql = "UPDATE programmateurs SET nom = ?, prenom = ?, adresse = ?, responsable = ?, hobby = ? WHERE pseudo = ?";
+    public Integer modifierProgrammeur(Programmeur p) {
+        String sql = "UPDATE programmeur SET nom = ?, prenom = ?, adresse = ?, responsable = ?, hobby = ?, an_naissance = ?, salaire = ?, prime = ? WHERE id = ?";
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, nom);
-            stmt.setString(2, prenom);
-            stmt.setString(3, adresse);
-            stmt.setString(4, responsable);
-            stmt.setString(5, hobby);
-            stmt.setString(6, pseudo);
+            stmt.setString(1, p.getNom());
+            stmt.setString(2, p.getPrenom());
+            stmt.setString(3, p.getAdresse());
+            stmt.setString(4, p.getPseudo());
+            stmt.setString(5, p.getResponsable());
+            stmt.setString(6, p.getHobby());
+            stmt.setInt(7, p.getAnNaissance());
+            stmt.setInt(8, p.getSalaire());
+            stmt.setInt(9, p.getPrime());
+            stmt.setInt(10, p.getId());
             return stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -72,19 +76,23 @@ public class ActionBDDimpl implements ActionsBDD {
     }
 
     @Override
-    public Programmateur recupererProgrammateur(String pseudo) {
-        String sql = "SELECT * FROM programmateurs WHERE pseudo = ?";
+    public Programmeur recupererProgrammeur(String pseudo) {
+        String sql = "SELECT * FROM programmeur WHERE pseudo = ?";
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, pseudo);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    return new Programmateur(
+                    return new Programmeur(
                             rs.getString("nom"),
                             rs.getString("prenom"),
                             rs.getString("adresse"),
                             rs.getString("pseudo"),
                             rs.getString("responsable"),
-                            rs.getString("hobby")
+                            rs.getString("hobby"),
+                            rs.getInt("an_naissance"),
+                            rs.getInt("salaire"),
+                            rs.getInt("prime"),
+                            rs.getInt("id")
                     );
                 }
             }
@@ -95,28 +103,32 @@ public class ActionBDDimpl implements ActionsBDD {
     }
 
     @Override
-    public Programmateur[] recupererProgrammateurs() {
-        String sql = "SELECT * FROM programmateurs";
+    public Programmeur[] recupererProgrammeurs() {
+        String sql = "SELECT * FROM programmeur";
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
             rs.last();
             int rowCount = rs.getRow();
             rs.beforeFirst();
-            Programmateur[] programmateurs = new Programmateur[rowCount];
+            Programmeur[] programmeurs = new Programmeur[rowCount];
             int i = 0;
             while (rs.next()) {
-                programmateurs[i++] = new Programmateur(
+                programmeurs[i++] = new Programmeur(
                         rs.getString("nom"),
                         rs.getString("prenom"),
                         rs.getString("adresse"),
                         rs.getString("pseudo"),
                         rs.getString("responsable"),
-                        rs.getString("hobby")
+                        rs.getString("hobby"),
+                        rs.getInt("an_naissance"),
+                        rs.getInt("salaire"),
+                        rs.getInt("prime"),
+                        rs.getInt("id")
                 );
             }
-            return programmateurs;
+            return programmeurs;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return new Programmateur[0];
+        return new Programmeur[0];
     }
 }

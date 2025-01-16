@@ -1,6 +1,6 @@
 package main.java.com.app.model;
 
-public class Programmateur {
+public class Programmeur {
     private Integer id;
     private String nom;
     private String prenom;
@@ -12,13 +12,30 @@ public class Programmateur {
     private Integer salaire;
     private Integer prime;
 
-    public Programmateur(String nom, String prenom, String adresse, String pseudo, String responsable, String hobby) {
+    public Programmeur() {
+        this.id = null;
+        this.nom = "";
+        this.prenom = "";
+        this.adresse = "";
+        this.pseudo = "";
+        this.responsable = "";
+        this.hobby = "";
+        this.anNaissance = 0;
+        this.salaire = 0;
+        this.prime = 0;
+    }
+
+    public Programmeur(String nom, String prenom, String adresse, String pseudo, String responsable, String hobby, Integer anNaissance, Integer salaire, Integer prime, Integer id) {
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
         this.pseudo = pseudo;
         this.responsable = responsable;
         this.hobby = hobby;
+        this.anNaissance = anNaissance;
+        this.salaire = salaire;
+        this.prime = prime;
+        this.id = id;
     }
 
     public String getNom() {
