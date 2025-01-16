@@ -68,7 +68,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.app.Start</mainClass>
+                            <mainClass>main.java.com.app.Start</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

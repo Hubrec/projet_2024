@@ -1,11 +1,11 @@
 package main.java.com.app.controller.bdd;
 
-import main.java.com.app.model.Programmateur;
+import main.java.com.app.model.Programmeur;
 
 public interface ActionsBDD {
-    Integer ajouterProgrammateur(String nom, String prenom, String adresse, String pseudo, String responsable, String hobby, Integer anNaissance, Integer salaire, Integer prime);
-    Integer supprimerProgrammateur(Number id);
-    Integer modifierProgrammateur(String pseudo, String nom, String prenom, String adresse, String responsable, String hobby);
-    Programmateur recupererProgrammateur(String pseudo);
-    Programmateur[] recupererProgrammateurs();
+    Integer ajouterProgrammeur(Programmeur programmeur);
+    Integer supprimerProgrammeur(String pseudo);
+    Integer modifierProgrammeur(Programmeur programmeur);
+    Programmeur recupererProgrammeur(String pseudo);
+    Programmeur[] recupererProgrammeurs();
 }
