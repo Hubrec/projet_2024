@@ -10,20 +10,18 @@ public class Menu {
 
     public static void afficherMenu() {
         int value = 0;
-        Scanner scanner = new Scanner(System.in);
 
         do {
             System.out.println("----------- Menu -----------");
-            System.out.println("1. Ajouter un programmateur");
+            System.out.println("1. Ajouter un programmateur"); // DONE
             System.out.println("2. Supprimer un programmateur");
             System.out.println("3. Modifier un programmateur");
-            System.out.println("4. Afficher un programmateur");
-            System.out.println("5. Afficher tous les programmeurs");
+            System.out.println("4. Afficher un programmateur"); // DONE
+            System.out.println("5. Afficher tous les programmeurs"); // DONE
             System.out.println("6. Quitter");
 
             System.out.print("Votre choix : ");
-            value = scanner.nextInt();
-            scanner.nextLine();
+            value = verifiedInt();
 
             switch (value) {
                 case 1:
@@ -49,13 +47,28 @@ public class Menu {
                     break;
             }
         } while (value != 6);
+    }
 
+    public static Integer verifiedInt() {
+        Scanner scanner = new Scanner(System.in);
+        boolean validInput = false;
+        int input = 0;
+        do {
+            if (scanner.hasNextInt()) {
+                input = scanner.nextInt();
+                validInput = true;
+            } else {
+                System.out.print("Valeur incorrecte, veuillez entrer un entier : ");
+                scanner.nextLine();
+            }
+        } while (!validInput);
 
+        return input;
     }
 
     public static void afficherMenuAjouter() {
-        Scanner scanner = new Scanner(System.in);
         Programmeur prog = new Programmeur();
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Ajout d'un programmateur");
         System.out.print("Nom : ");
@@ -71,16 +84,17 @@ public class Menu {
         System.out.print("Hobby : ");
         prog.setHobby(scanner.nextLine());
         System.out.print("Annee de naissance : ");
-        prog.setAnNaissance(scanner.nextInt());
+        prog.setAnNaissance(verifiedInt());
         System.out.print("Salaire : ");
-        prog.setSalaire(scanner.nextInt());
+        prog.setSalaire(verifiedInt());
         System.out.print("Prime : ");
-        prog.setPrime(scanner.nextInt());
+        prog.setPrime(verifiedInt());
 
         ActionsBDD actionsBDD = new ActionBDDimpl();
         Integer id = actionsBDD.ajouterProgrammeur(prog);
-
-        System.out.println("Programmateur ajouté avec l'id : " + id);
+        if (id != null) {
+            System.out.println("Programmateur ajouté avec l'id : " + id);
+        }
     }
 
     public static void afficherMenuSupprimer() {
@@ -106,6 +120,15 @@ public class Menu {
 
     public static void afficherMenuAfficherTous() {
         System.out.println("Affichage de tous les programmeurs");
+
+        ActionsBDD actionsBDD = new ActionBDDimpl();
+        Programmeur[] programmeurs = actionsBDD.recupererProgrammeurs();
+
+        if (programmeurs != null) {
+            afficherProgrammeurs(programmeurs);
+        } else {
+            System.out.println("Aucun programmateur trouvé");
+        }
     }
 
     public static void afficherMenuQuitter() {
@@ -113,20 +136,20 @@ public class Menu {
     }
 
     public static void afficherErreur() {
-        System.out.println("Erreur");
+        System.out.println("Erreur de saisie");
     }
 
-    public static void afficherProgrammateur(Programmeur prog) {
+    public static void afficherProgrammeur(Programmeur prog) {
         System.out.println(prog.toString());
     }
 
-    public void afficherProgrammateurInexistant() {
+    public void afficherProgrammeurInexistant() {
         System.out.println("Programmateur inexistant");
     }
 
-    public void afficherProgrammateurs(Programmeur[] programmeurs) {
+    public static void afficherProgrammeurs(Programmeur[] programmeurs) {
         for (Programmeur prog: programmeurs) {
-            afficherProgrammateur(prog);
+            afficherProgrammeur(prog);
             System.out.println("<---------------->");
         }
     }

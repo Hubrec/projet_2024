@@ -37,7 +37,11 @@ public class ActionBDDimpl implements ActionsBDD {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            if (e instanceof SQLIntegrityConstraintViolationException) {
+                System.out.println("Ce pseudo est déjà utilisé.");
+            } else {
+                e.printStackTrace();
+            }
         }
         return null;
     }
@@ -105,7 +109,9 @@ public class ActionBDDimpl implements ActionsBDD {
     @Override
     public Programmeur[] recupererProgrammeurs() {
         String sql = "SELECT * FROM programmeur";
-        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+             ResultSet rs = stmt.executeQuery()) {
             rs.last();
             int rowCount = rs.getRow();
             rs.beforeFirst();

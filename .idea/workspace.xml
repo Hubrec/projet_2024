@@ -5,18 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9ff3fda-f87c-4b5a-91cc-e0fdb994b621" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project_2024/main/java/com/app/Start.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project_2024/main/java/com/app/Start.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project_2024/main/java/com/app/controller/bdd/ActionsBDD.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project_2024/main/java/com/app/controller/bdd/ActionsBDD.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project_2024/main/java/com/app/controller/bdd/impl/ActionBDDimpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project_2024/main/java/com/app/controller/bdd/impl/ActionBDDimpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project_2024/main/java/com/app/model/Programmateur.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/project_2024/main/java/com/app/vue/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project_2024/main/java/com/app/vue/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/bdd/ActionsBDD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/bdd/ActionsBDD.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/bdd/impl/ActionBDDimpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/bdd/impl/ActionBDDimpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/model/Programmateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/model/Programmeur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/app/vue/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/vue/Menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,6 +54,7 @@
     "WebServerToolWindowFactoryState": "false",
     "deletionFromPopupRequiresConfirmation": "false",
     "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/mathi/Documents/EFREI/projects/projet_2024/src/ressources/db",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -74,6 +68,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mathi\Documents\EFREI\projects\projet_2024\src\ressources\db" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\mathi\Documents\EFREI\projects\projet_2024\src\main\java\com\app\controller\bdd" />
       <recent name="C:\Users\mathi\Documents\EFREI\projects\projet_2024\src\ressources\db" />
@@ -116,7 +113,7 @@
       <workItem from="1737011170263" duration="1699000" />
       <workItem from="1737012882930" duration="380000" />
       <workItem from="1737013614816" duration="2404000" />
-      <workItem from="1737016096295" duration="3810000" />
+      <workItem from="1737016096295" duration="8945000" />
     </task>
     <servers />
   </component>
