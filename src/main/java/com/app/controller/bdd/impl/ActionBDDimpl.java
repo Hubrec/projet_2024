@@ -1,9 +1,16 @@
 package main.java.com.app.controller.bdd.impl;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 import main.java.com.app.controller.bdd.ActionsBDD;
 import main.java.com.app.model.Programmeur;
-
-import java.sql.*;
 
 public class ActionBDDimpl implements ActionsBDD {
 
@@ -103,32 +110,38 @@ public class ActionBDDimpl implements ActionsBDD {
     }
 
     @Override
-    public Programmeur[] recupererProgrammeurs() {
-        String sql = "SELECT * FROM programmeur";
-        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
-            rs.last();
-            int rowCount = rs.getRow();
-            rs.beforeFirst();
-            Programmeur[] programmeurs = new Programmeur[rowCount];
-            int i = 0;
-            while (rs.next()) {
-                programmeurs[i++] = new Programmeur(
-                        rs.getString("nom"),
-                        rs.getString("prenom"),
-                        rs.getString("adresse"),
-                        rs.getString("pseudo"),
-                        rs.getString("responsable"),
-                        rs.getString("hobby"),
-                        rs.getInt("an_naissance"),
-                        rs.getInt("salaire"),
-                        rs.getInt("prime"),
-                        rs.getInt("id")
-                );
-            }
-            return programmeurs;
-        } catch (SQLException e) {
-            e.printStackTrace();
+public Programmeur[] recupererProgrammeurs() {
+    String sql = "SELECT * FROM programmeur";
+
+    try (Connection conn = getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+         ResultSet rs = stmt.executeQuery()) {
+
+        
+        List<Programmeur> programmeurs = new ArrayList<>();
+
+        while (rs.next()) {
+            programmeurs.add(new Programmeur(
+                    rs.getString("nom"),
+                    rs.getString("prenom"),
+                    rs.getString("adresse"),
+                    rs.getString("pseudo"),
+                    rs.getString("responsable"),
+                    rs.getString("hobby"),
+                    rs.getInt("an_naissance"),
+                    rs.getInt("salaire"),
+                    rs.getInt("prime"),
+                    rs.getInt("id")
+            ));
         }
-        return new Programmeur[0];
+
+
+        return programmeurs.toArray(new Programmeur[0]);
+
+    } catch (SQLException e) {
+        System.out.println("Erreur SQL lors de la récupération des programmeurs.");
+        e.printStackTrace();
     }
+    return new Programmeur[0];
+}
 }
