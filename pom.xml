@@ -7,7 +7,7 @@
     <artifactId>project_2024</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <!-- Configuration de Java -->
     <properties>
@@ -16,7 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <!-- Dépendances -->
+    <!-- DÃ©pendances -->
     <dependencies>
         <!-- MySQL Connector/J -->
         <dependency>
@@ -73,7 +73,17 @@
                     </archive>
                 </configuration>
             </plugin>
+
+            <!-- Plugin Maven Exec -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <mainClass>com.app.Start</mainClass>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
-
 </project>
