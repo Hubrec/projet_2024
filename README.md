@@ -29,6 +29,10 @@ Voici la liste exhaustive des fonctionnalités de l'applicaiton :
  - Visualiser tous les programmeurs de l'application
  - Supprimer un programmeur
 
+## La documentation
+
+Vous pourrez retrouver la javadoc associée à ce projet dans le lien suivant [JavaDoc](./doc/overview-summary.html), ou dans le répertoire "doc".
+
 ## Auteurs
 
 **Mathis Guerin**
