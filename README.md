@@ -31,7 +31,7 @@ Voici la liste exhaustive des fonctionnalités de l'applicaiton :
 
 ## La documentation
 
-- Vous pourrez retrouver la javadoc associée à ce projet dans le lien suivant [JavaDoc](./doc/overview-summary.html), ou dans le répertoire "doc".
+Vous pourrez retrouver la javadoc associée à ce projet dans le lien suivant [JavaDoc](./doc/overview-summary.html), ou dans le répertoire "doc".
 
 ## Auteurs
 
