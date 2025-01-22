@@ -6,8 +6,16 @@ import main.java.com.app.controller.bdd.ActionsBDD;
 import main.java.com.app.controller.bdd.impl.ActionBDDimpl;
 import main.java.com.app.model.Programmeur;
 
+/**
+ * Classe Menu fournissant une interface utilisateur pour la gestion des programmeurs.
+ * Permet d'ajouter, supprimer, modifier et afficher les informations des programmeurs via une interface en ligne de commande.
+ */
 public class Menu {
 
+    /**
+     * Affiche le menu principal et permet à l'utilisateur de choisir parmi différentes actions.
+     * L'utilisateur peut ajouter, supprimer, modifier, afficher un ou tous les programmeurs, ou quitter le programme.
+     */
     public static void afficherMenu() {
         int value = 0;
         Scanner scanner = new Scanner(System.in);
@@ -53,6 +61,10 @@ public class Menu {
 
     }
 
+    /**
+     * Affiche le menu pour ajouter un nouveau programmeur et collecte les informations via l'entrée utilisateur.
+     * Les informations sont ensuite utilisées pour créer un programmeur dans la base de données.
+     */
     public static void afficherMenuAjouter() {
         Scanner scanner = new Scanner(System.in);
         Programmeur prog = new Programmeur();
@@ -83,42 +95,53 @@ public class Menu {
         System.out.println("Programmateur ajouté avec l'id : " + id);
     }
 
+    /**
+     * Affiche le menu pour supprimer un programmeur en demandant le pseudo à l'utilisateur.
+     * Supprime le programmeur correspondant de la base de données si trouvé.
+     */
+    public static void afficherMenuSupprimer() {
+        System.out.println("Supprimer un programmeur");
 
-public static void afficherMenuSupprimer() {
-    System.out.println("Supprimer un programmeur");
+        int value = 0; 
+        Scanner scanner = new Scanner(System.in);
 
-    int value = 0; 
-    Scanner scanner = new Scanner(System.in);
+        do {
+            System.out.print("Pseudo (tapez '1' pour quitter) : ");
+            String pseudo = scanner.next(); 
 
-    do {
-        System.out.print("Pseudo (tapez '1' pour quitter) : ");
-        String pseudo = scanner.next(); 
+            if (pseudo.equals("1")) {
+                System.out.println("Vous avez quitté le menu de suppression.");
+                break; 
+            }
 
-        if (pseudo.equals("1")) {
-            System.out.println("Vous avez quitté le menu de suppression.");
-            break; 
-        }
+            scanner.nextLine();
 
-        scanner.nextLine();
+            ActionsBDD actionsBDD = new ActionBDDimpl();
+            value = actionsBDD.supprimerProgrammeur(pseudo);
 
-        ActionsBDD actionsBDD = new ActionBDDimpl();
-        value = actionsBDD.supprimerProgrammeur(pseudo);
+            if (value == 1) {
+                System.out.println("Le programmeur avec le pseudo '" + pseudo + "' a été supprimé avec succès.");
+            } else {
+                System.out.println("Le programmeur avec le pseudo '" + pseudo + "' n'existe pas ou la suppression a échoué.");
+            }
 
-        if (value == 1) {
-            System.out.println("Le programmeur avec le pseudo '" + pseudo + "' a été supprimé avec succès.");
-        } else {
-            System.out.println("Le programmeur avec le pseudo '" + pseudo + "' n'existe pas ou la suppression a échoué.");
-        }
+        } while (value != 1);
 
-    } while (value != 1);
+        System.out.println("Fin du programme de suppression.");
+    }
 
-    System.out.println("Fin du programme de suppression.");
-}
-
+    /**
+     * Affiche le menu pour modifier les informations d'un programmeur existant.
+     * L'utilisateur doit entrer les nouvelles informations pour mettre à jour le programmeur spécifié.
+     */
     public static void afficherMenuModifier() {
         System.out.println("Modification d'un programmateur");
     }
 
+    /**
+     * Affiche le menu pour afficher les informations d'un programmeur spécifique.
+     * Demande le pseudo du programmeur et affiche ses informations si trouvé.
+     */
     public static void afficherMenuAfficher() {
         System.out.println("Afficher un programmeur");
     
@@ -149,7 +172,10 @@ public static void afficherMenuSupprimer() {
         System.out.println("Fin du programme d'affichage.");
     }
     
-
+    /**
+     * Affiche le menu pour afficher tous les programmeurs enregistrés dans la base de données.
+     * Liste les informations de tous les programmeurs disponibles.
+     */
     public static void afficherMenuAfficherTous() {
         System.out.println("Affichage de tous les programmeurs");
     
@@ -168,22 +194,39 @@ public static void afficherMenuSupprimer() {
         System.out.println("Fin de l'affichage de tous les programmeurs.");
     }
 
+    /**
+     * Affiche un message pour quitter le programme et ferme l'application.
+     */
     public static void afficherMenuQuitter() {
         System.out.println("Quitter");
     }
 
+    /**
+     * Affiche un message d'erreur en cas de sélection invalide dans le menu principal.
+     */
     public static void afficherErreur() {
         System.out.println("Erreur");
     }
 
+    /**
+     * Affiche les détails d'un programmeur spécifique.
+     * @param prog L'objet Programmeur dont les détails doivent être affichés.
+     */
     public static void afficherProgrammateur(Programmeur prog) {
         System.out.println(prog.toString());
     }
 
+    /**
+     * Affiche un message indiquant que le programmateur spécifié est inexistant.
+     */
     public void afficherProgrammateurInexistant() {
         System.out.println("Programmateur inexistant");
     }
 
+    /**
+     * Affiche les informations de tous les programmeurs passés en paramètre.
+     * @param programmeurs Un tableau contenant les programmeurs à afficher.
+     */
     public void afficherProgrammateurs(Programmeur[] programmeurs) {
         for (Programmeur prog: programmeurs) {
             afficherProgrammateur(prog);
