@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8252d8be-68a4-4494-8157-dd812dc9d73b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/Start.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/Start.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/bdd/ActionsBDD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/bdd/ActionsBDD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/controller/bdd/impl/ActionBDDimpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/controller/bdd/impl/ActionBDDimpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/model/Programmeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/model/Programmeur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/vue/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/vue/Menu.java" afterDir="false" />
-    </list>
+    <list default="true" id="8252d8be-68a4-4494-8157-dd812dc9d73b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -123,7 +117,7 @@
       <updated>1737017837026</updated>
       <workItem from="1737017840501" duration="2293000" />
       <workItem from="1737021577314" duration="1824000" />
-      <workItem from="1737566859691" duration="2042000" />
+      <workItem from="1737566859691" duration="3328000" />
     </task>
     <servers />
   </component>

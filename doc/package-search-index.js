@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"main.java.com.app"},{"l":"main.java.com.app.controller.bdd"},{"l":"main.java.com.app.controller.bdd.impl"},{"l":"main.java.com.app.model"},{"l":"main.java.com.app.vue"}];updateSearchResults();
