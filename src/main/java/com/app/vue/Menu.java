@@ -1,10 +1,10 @@
 package main.java.com.app.vue;
 
+import java.util.Scanner;
+
+import main.java.com.app.controller.bdd.ActionsBDD;
 import main.java.com.app.controller.bdd.impl.ActionBDDimpl;
 import main.java.com.app.model.Programmeur;
-import main.java.com.app.controller.bdd.ActionsBDD;
-
-import java.util.Scanner;
 
 public class Menu {
 
@@ -83,29 +83,89 @@ public class Menu {
         System.out.println("Programmateur ajouté avec l'id : " + id);
     }
 
-    public static void afficherMenuSupprimer() {
-        System.out.println("Suppression d'un programmateur");
-    }
+
+public static void afficherMenuSupprimer() {
+    System.out.println("Supprimer un programmeur");
+
+    int value = 0; 
+    Scanner scanner = new Scanner(System.in);
+
+    do {
+        System.out.print("Pseudo (tapez '1' pour quitter) : ");
+        String pseudo = scanner.next(); 
+
+        if (pseudo.equals("1")) {
+            System.out.println("Vous avez quitté le menu de suppression.");
+            break; 
+        }
+
+        scanner.nextLine();
+
+        ActionsBDD actionsBDD = new ActionBDDimpl();
+        value = actionsBDD.supprimerProgrammeur(pseudo);
+
+        if (value == 1) {
+            System.out.println("Le programmeur avec le pseudo '" + pseudo + "' a été supprimé avec succès.");
+        } else {
+            System.out.println("Le programmeur avec le pseudo '" + pseudo + "' n'existe pas ou la suppression a échoué.");
+        }
+
+    } while (value != 1);
+
+    System.out.println("Fin du programme de suppression.");
+}
 
     public static void afficherMenuModifier() {
         System.out.println("Modification d'un programmateur");
     }
 
     public static void afficherMenuAfficher() {
+        System.out.println("Afficher un programmeur");
+    
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Affichage d'un programmateur");
-
-        System.out.print("Pseudo : ");
-        String pseudo = scanner.nextLine();
-
-        ActionsBDD actionsBDD = new ActionBDDimpl();
-        Programmeur prog = actionsBDD.recupererProgrammeur(pseudo);
-        System.out.println(prog.toString());
+    
+        while (true) {
+            System.out.print("Pseudo (tapez '1' pour quitter) : ");
+            String pseudo = scanner.next();
+    
+            if (pseudo.equals("1")) {
+                System.out.println("Vous avez quitté le menu d'affichage.");
+                break;
+            }
+    
+            scanner.nextLine(); 
+    
+            ActionsBDD actionsBDD = new ActionBDDimpl();
+            Programmeur programmeur = actionsBDD.recupererProgrammeur(pseudo);
+    
+            if (programmeur != null) {
+                System.out.println("Programmeur trouvé :");
+                System.out.println(programmeur.toString());
+            } else {
+                System.out.println("Le programmeur avec le pseudo '" + pseudo + "' n'existe pas.");
+            }
+        }
+    
+        System.out.println("Fin du programme d'affichage.");
     }
+    
 
     public static void afficherMenuAfficherTous() {
         System.out.println("Affichage de tous les programmeurs");
+    
+        ActionsBDD actionsBDD = new ActionBDDimpl();
+        Programmeur[] programmeurs = actionsBDD.recupererProgrammeurs();
+        
+        if (programmeurs != null && programmeurs.length > 0) {
+            for (Programmeur prog : programmeurs) {
+                System.out.println(prog.toString());
+                System.out.println("<---------------->");
+            }
+        } else {
+            System.out.println("Aucun programmeur trouvé.");
+        }
+    
+        System.out.println("Fin de l'affichage de tous les programmeurs.");
     }
 
     public static void afficherMenuQuitter() {
